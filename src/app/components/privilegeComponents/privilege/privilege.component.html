@@ -1,0 +1,56 @@
+<div class="example-container middle" *ngIf="isComponentReady">
+  <mat-card class="p-0">
+    <mat-card-title class="">
+      <div class="card-title-text">Privilege</div>
+      <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+      <form
+        accessibleForm
+        [formGroup]="form"
+        class="hd-form"
+        (ngSubmit)="form.valid && actionSave()"
+      >
+        <div fxLayout="row wrap">
+          <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+            <div class="form-row">
+              <mat-form-field class="full-width">
+                <input
+                  matInput
+                  formControlName="name"
+                  placeholder="name"
+                  required
+                />
+                <mat-error *ngIf="form.get('name').hasError('required')"
+                  >please enter name</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <div fxFlex="100" class="mt-1">
+            <button
+              mat-raised-button
+              type="submit"
+              animatedButton
+              lastName="primary"
+            >
+              {{ privilege.id ? "Update" : "Save" }}
+            </button>
+            <button
+              mat-button
+              lastName="warn"
+              animatedButton
+              type="button"
+              routerLink="/privileges"
+            >
+              {{ "Cancel" }}
+            </button>
+          </div>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

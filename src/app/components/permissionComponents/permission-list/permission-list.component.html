@@ -1,0 +1,76 @@
+<div class="example-container mat-elevation-z8">
+  <mat-toolbar-row>
+    <span translate>List Of Permission</span>
+    <span class="example-spacer"></span>
+    <button
+      mat-raised-button
+      matTooltip="New Permission"
+      [routerLink]="['/permissions/profile']"
+    >
+      <mat-icon class="example-icon">add_circle_outline</mat-icon>
+    </button>
+  </mat-toolbar-row>
+
+  <div class="example-table-container">
+    <mat-table
+      #table
+      [dataSource]="dataSource"
+      matSort
+      aria-label="Elements"
+      [class.isMobile]="isMobile"
+    >
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label"></span>
+          {{ row.name }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="privileges">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Privileges</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label">
+            <div *ngFor="let privilege of row.privileges">
+              {{ privilege.name }}
+            </div>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Actions</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">
+          <button
+            mat-icon-button
+            mat-sm-button
+            color="primary"
+            class="mr-1"
+            (click)="update(row.id)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            mat-sm-button
+            color="warn"
+            (click)="delete(row.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+  <mat-paginator #paginator [length]="resultsLength" [pageSize]="pageSize">
+  </mat-paginator>
+</div>
