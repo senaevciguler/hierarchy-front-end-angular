@@ -23,6 +23,5 @@
 -for connected with back-end used http properties of '@angular/common/http'; that presented crud statements(get,put,post,delete)
 
 #app-routing.ts include all angular components path
----
+
 #app-module.ts include ngModel declarations and imports that whatever you used in your projest as a material imports and components declarations
----
